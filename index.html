@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MentorApp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="internal-page">
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo-center">
+    <span class="logo-text">
+        Mentor <span>▶</span> App
+    </span>
+</div>
+
+
+        <div class="menu" id="menu">
+          <a href="#">O que é</a>
+          <a href="#">Como funciona</a>
+          <a href="preco.html">Preços</a>
+          <a href="cadastro.html" class="btn btn-primary">Cadastrar</a>
+        </div>
+
+        <!-- Hambúrguer -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+
+  <section class="hero">
+    <div class="container">
+      <h1>A forma mais inteligente de aprender começa aqui</h1>
+      <p>Transforme qualquer tópico em vídeos educativos incríveis com IA</p>
+      <a href="video.html" class="btn btn-primary">Começar agora</a>
+
+      <div class="video-preview">Seu vídeo educativo será gerado aqui</div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <div class="container">
+      <h2>Dê um play no seu conhecimento</h2>
+    </div>
+  </section>
+
+
+
+
+  <section class="section">
+    <div class="container">
+      <h2 class="center">Como funciona</h2>
+      <br /><br />
+      <div class="cards">
+        <div class="card center">
+          <h3>Cole o conteúdo</h3>
+          <p>Insira qualquer tema que deseja aprender</p>
+        </div>
+        <div class="card center">
+          <h3>Assista ou ouça</h3>
+          <p>Seu material pronto em segundos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="center">Benefícios</h2>
+      <br /><br />
+      <div class="cards">
+        <div class="card">
+          <h3>Criação Rápida</h3>
+          <p>Gere vídeos educativos em segundos</p>
+        </div>
+        <div class="card">
+          <h3>Conteúdo Personalizado</h3>
+          <p>Adaptado ao seu estilo de aprendizado</p>
+        </div>
+        <div class="card">
+          <h3>Sempre Disponível</h3>
+          <p>Acesse de qualquer dispositivo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <div class="container">
+      <h2>Pronto para revolucionar sua educação?</h2>
+      <br />
+      <a href="cadastro.html" class="btn btn-primary">Quero começar</a>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+    const overlay = document.getElementById("menuOverlay");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      menu.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    /* Fecha ao clicar fora */
+    overlay.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      menu.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+
+  </script>
+
+
+
+  </script>
+
+  <footer>© 2026 MentorApp</footer>
+</body>
+
+</html>

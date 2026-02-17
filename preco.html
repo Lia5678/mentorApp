@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preços</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+ <header>
+    <div class="container header-content">
+
+        <a href="index.html" class="btn-back">
+            <span class="back-text">← Voltar</span>
+            <span class="back-icon">←</span>
+        </a>
+
+        <div class="logo-center">
+            <span class="logo-text">
+                Mentor <span>▶</span> App
+            </span>
+        </div>
+
+        <div class="header-spacer"></div>
+
+    </div>
+</header>
+
+    <section class="section center">
+        <div class="container">
+            <h2>Plano simples, sem surpresas</h2>
+            <p>Tudo o que você precisa para transformar seu aprendizado</p>
+        </div>
+            <br><br>
+        
+            <div class="price-card">
+                <h3>PLANO PREMIUM</h3>
+                <h2>R$55/mês</h2>
+                <p>✔ Vídeos educativos ilimitados</p>
+                <p>✔ Áudio premium</p>
+                <p>✔ Conteúdo personalizado com IA</p>
+                <p>✔ Acesso em qualquer dispositivo</p>
+                <p>✔ Novos recursos em primeira mão</p>
+                <br>
+                <button class="btn" style="background:white;color:#a855f7;">Assinar agora</button>
+            </div>
+
+        </div>
+    </section>
+
+    <br><br>
+
+    <h2>Indique amigos e ganhe
+        <span
+            style="background:linear-gradient(90deg,#6a8dff,#a855f7,#ff4d8d);-webkit-background-clip:text;color:transparent;">
+            desconto
+        </span>
+    </h2>
+
+    <p>Convide até 10 amigos e ganhe até 50% de desconto na sua assinatura mensal!</p>
+
+    <div class="referral-grid">
+
+        <div class="referral-card" data-meta="1">
+            <h4>1 amigo</h4>
+            <h2>5%</h2>
+            <p>de desconto</p>
+        </div>
+
+        <div class="referral-card" data-meta="3">
+            <h4>3 amigos</h4>
+            <h2>10%</h2>
+            <p>de desconto</p>
+        </div>
+
+        <div class="referral-card" data-meta="5">
+            <h4>5 amigos</h4>
+            <h2>20%</h2>
+            <p>de desconto</p>
+        </div>
+
+        <div class="referral-card" data-meta="7">
+            <h4>7 amigos</h4>
+            <h2>30%</h2>
+            <p>de desconto</p>
+        </div>
+
+        <div class="referral-card" data-meta="10">
+            <h4>10 amigos</h4>
+            <h2>50%</h2>
+            <p>de desconto</p>
+        </div>
+
+    </div>
+
+    <br><br>
+    <br><br>
+
+    <div class="card-box">
+
+        <h3>Seu link de indicação</h3>
+
+        <div class="referral-link-box">
+            <input type="text" id="refLinkText" value="https://mentorapp.com/cadastro?ref=MENTOR-2T0IK8" readonly />
+
+            <button class="copy-btn" onclick="copiarLink()">
+                ⧉
+            </button>
+        </div>
+
+    </div>
+
+    <div class="card-box">
+
+        <div class="progress-header">
+            <span>Seus indicados</span>
+            <span id="contadorAmigos">0 / 10 amigos</span>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <p class="progress-text">
+            Indique seu primeiro amigo para começar a ganhar desconto!
+        </p>
+
+    </div>
+
+    <br>
+
+    <input type="range" min="0" max="10" value="0" id="rangeAmigos" oninput="alterarAmigosRange(this.value)">
+
+
+    <h2 id="priceValue">R$55/mês</h2>
+    <p id="discountInfo">Sem desconto aplicado</p>
+    <p id="economyValue"></p>
+
+
+    <script>
+        let amigos = 0;
+        const precoBase = 55;
+
+        function alterarAmigosRange(valor) {
+            amigos = parseInt(valor);
+            atualizarPreco();
+        }
+
+        function atualizarPreco() {
+
+            let desconto = 0;
+
+            if (amigos >= 10) {
+                desconto = 0.50;
+            } else if (amigos >= 7) {
+                desconto = 0.30;
+            } else if (amigos >= 5) {
+                desconto = 0.20;
+            } else if (amigos >= 3) {
+                desconto = 0.10;
+            } else if (amigos >= 1) {
+                desconto = 0.05;
+            }
+
+            // Atualizar barra de progresso
+            let porcentagem = (amigos / 10) * 100;
+            document.getElementById("progressBar").style.width = porcentagem + "%";
+
+            // Calcular preço
+
+            document.getElementById("contadorAmigos").innerText =
+                amigos + " / 10 amigos";
+
+            let precoFinal = precoBase - (precoBase * desconto);
+            let economia = precoBase - precoFinal;
+
+            document.getElementById("priceValue").innerText =
+                "R$" + precoFinal.toFixed(2) + "/mês";
+
+            if (desconto > 0) {
+                document.getElementById("discountInfo").innerText =
+                    "Desconto aplicado: " + (desconto * 100) + "%";
+
+                document.getElementById("economyValue").innerText =
+                    "Você está economizando R$" + economia.toFixed(2);
+            } else {
+                document.getElementById("discountInfo").innerText =
+                    "Sem desconto aplicado";
+
+                document.getElementById("economyValue").innerText = "";
+            }
+
+            // Destacar card ativo
+            const cards = document.querySelectorAll(".referral-card");
+
+            cards.forEach(card => {
+                card.classList.remove("active");
+
+                if (amigos >= parseInt(card.dataset.meta)) {
+                    card.classList.add("active");
+                }
+            });
+        }
+
+        // Iniciar cálculo ao carregar página
+        window.onload = atualizarPreco;
+
+        function copiarLink() {
+            const texto = document.getElementById("refLinkText").value;
+            navigator.clipboard.writeText(texto);
+            alert("Link copiado com sucesso!");
+        }
+
+        window.addEventListener("scroll", function(){
+    const header = document.querySelector("header");
+    if(window.scrollY > 10){
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
+
+
+    </script>
+
+    <footer>
+        © 2026 MentorApp
+    </footer>
+
+</body>
+
+</html>
